@@ -19,7 +19,7 @@ class BlogFactory extends Factory
         return [
             'title' => $this->faker->realText(20),
             'body' => $this->faker->realText(1000),
-            'updated_at'=>$this->faker->dateTimeBetween('-10days', '0days'),
+            'updated_at'=>$this->faker->dateTimeBetween('-10days', '0days')
         ];
     }
 }

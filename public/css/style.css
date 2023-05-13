@@ -1,0 +1,17 @@
+nov {
+    display: flex;
+}
+
+nav li {
+    margin: 10px;
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td {
+    padding: 5px;
+}
