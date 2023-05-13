@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Blog;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -19,9 +20,9 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         User::factory(10)->create()->each(function ($user) {
-            Blog::factory(random_int(2, 5))->create(['user_id' => $user]);
+            Blog::factory(random_int(2, 5))->create(['user_id' => $user])->each(function ($blog) {
+                Comment::factory(random_int(1, 3))->create(['blog_id' => $blog]);
+            });
         });
-
-        Blog::factory(5)->create();
     }
 }
