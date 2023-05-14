@@ -18,11 +18,12 @@ class BlogFactory extends Factory
     public function definition()
     {
         return [
-            'user_id'=>User::factory(),
+            'user_id' => User::factory(),
 
+            'is_open' => $this->faker->randomElement([true, true, true, true, false]),
             'title' => $this->faker->realText(20),
             'body' => $this->faker->realText(1000),
-            'updated_at'=>$this->faker->dateTimeBetween('-10days', '0days')
+            'updated_at' => $this->faker->dateTimeBetween('-10days', '0days')
         ];
     }
 }
