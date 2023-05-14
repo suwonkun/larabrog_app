@@ -23,5 +23,7 @@ class HomeController extends Controller
     {
 
         abort_unless($blog->is_open, 403);
+
+        return view('blog.show', compact('blog'));
     }
 }
