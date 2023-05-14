@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <h1>ユーザー登録</h1>
 
     <form method="post">
@@ -17,6 +16,9 @@
         メルアド：<input type="text" name="email" value="{{ old('email') }}">
         <br>
         パスワード：<input type="password" name="password">
+        <br>
+        都道府県：
+        <x-pref class="bb" id="myid" :default="old('pref')"/>
 
 
         <br><br>
