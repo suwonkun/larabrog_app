@@ -3,7 +3,7 @@
  'default',
 ])
 @php
-    $prefs =['東京','千葉県','埼玉県'];
+    $prefs =['東京都','千葉県','埼玉県'];
 @endphp
 
 <select {{ $attributes->merge(['name' => 'pref', 'class' => 'aa']) }}>
