@@ -11,4 +11,22 @@ class UserLoginController extends Controller
     {
         return view('mypage.login');
     }
+
+    public function login(Request $request)
+    {
+        $data = $request->validate([
+            'email' => ['required', 'email:filter'],
+            'password' => ['required', 'string'],
+        ]);
+
+        if (Auth::attempt($data)) {
+            $request->session()->regenerate();
+
+            return redirect('mypage');
+        }
+
+        return back()->withErrors([
+            'email' => 'メールアドレスかパスワードが間違っています。',
+        ]);
+    }
 }
