@@ -10,8 +10,10 @@ class Blog extends Model
     use HasFactory;
 
     protected $casts = [
-        'is_open' =>'boolean',
+        'is_open' => 'boolean',
     ];
+
+    protected $guarded = [];
 
     public function user()
     {
