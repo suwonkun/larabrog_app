@@ -14,14 +14,7 @@ class BlogController extends Controller
         return view('mypage.index', compact('blogs'));
     }
 
-    public function logout(Request $request)
-    {
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect('mypage/login')->with('message', 'ログアウトしました');
+    public function create(){
+        return view('mypage.blog.create');
     }
 }
