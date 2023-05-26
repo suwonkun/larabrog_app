@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mypage;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BlogSaveRequest;
 use App\Models\Blog;
 use http\Client\Curl\User;
 use Illuminate\Http\Request;
@@ -21,13 +22,9 @@ class BlogController extends Controller
         return view('mypage.blog.create');
     }
 
-    public function store(Request $request)
+    public function store(BlogSaveRequest $request)
     {
-        $data = $request->validate([
-            'title' => ['required', 'string', 'max:255'],
-            'body' => ['required', 'string'],
-            'is_open' => ['nullable'],
-        ]);
+        $data = $request->validated();
 
         $data['is_open'] = $request->boolean('is_open');
 
@@ -44,5 +41,20 @@ class BlogController extends Controller
         $data = old() ?: $blog;
 
         return view('mypage.blog.edit', compact('data'));
+    }
+
+    public function update(Blog $blog, BlogSaveRequest $request)
+    {
+        if ($request->user()->isNot($blog->user)) {
+            abort(403);
+        }
+
+        $data = $request->validated();
+
+        $data['is_open'] = $request->boolean('is_open');
+
+        $blog->update($data);
+
+        return redirect(route('mypage.blog.update', $blog))->with('message', 'ブログを更新しました');
     }
 }
