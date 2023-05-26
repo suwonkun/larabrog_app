@@ -27,10 +27,22 @@ class BlogController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'body' => ['required', 'string'],
             'is_open' => ['nullable'],
-            ]);
+        ]);
 
         $data['is_open'] = $request->boolean('is_open');
 
-        $request->user()->blogs()->create($data);
+        $blog = $request->user()->blogs()->create($data);
+
+        return redirect(route('mypage.blog.edit', $blog))->with('message', '新規登録しました');
+    }
+
+    public function edit(Blog $blog, Request $request)
+    {
+        if ($request->user()->isNot($blog->user)) {
+            abort(403);
+        }
+        $data = old() ?: $blog;
+
+        return view('mypage.blog.edit', compact('data'));
     }
 }
