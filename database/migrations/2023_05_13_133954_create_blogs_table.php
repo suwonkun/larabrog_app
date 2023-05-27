@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->boolean('is_open');
             $table->string('title');
             $table->text('body');
+            $table->string('pict')->nullable();
             $table->timestamps();
         });
     }
