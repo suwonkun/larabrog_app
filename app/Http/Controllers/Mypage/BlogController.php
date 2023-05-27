@@ -57,4 +57,13 @@ class BlogController extends Controller
 
         return redirect(route('mypage.blog.update', $blog))->with('message', 'ブログを更新しました');
     }
+
+    public function destroy(Blog $blog, Request $request)
+    {
+        abort_if($request->user()->isNot($blog->user), 403);
+
+        $blog->delete();
+
+        return redirect('mypage');
+    }
 }
