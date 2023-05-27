@@ -54,6 +54,7 @@ class BlogController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('pict')) {
+            $blog->deletePictFile();
             $data['pict'] = $request->file('pict')->store('blogs', 'public');
         }
 

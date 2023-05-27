@@ -3,11 +3,11 @@
 @section('content')
 
     <h1>{{$blog->title}}</h1>
-    <div>{!! nl2br(e($blog->body)) !!}}</div>
+    <div>{!! nl2br(e($blog->body)) !!}</div>
 
     画像：<input type="file" name="pict">
     @if($blog->pict)
-        <p><img src="{{Storage::url($blog->pict) }}"></p>
+        <p><img src="{{Storage::url($blog->pict) }}" width="200"></p>
     @endif
 
     <p>書き手：{{$blog->user->name}}</p>
