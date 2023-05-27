@@ -26,7 +26,9 @@ class BlogController extends Controller
     {
         $data = $request->validated();
 
-        $data['is_open'] = $request->boolean('is_open');
+        if ($request->hasFile('pict')) {
+            $data['pict'] = $request->file('pict')->store('blogs', 'public');
+        }
 
         $blog = $request->user()->blogs()->create($data);
 
@@ -50,6 +52,10 @@ class BlogController extends Controller
         }
 
         $data = $request->validated();
+
+        if ($request->hasFile('pict')) {
+            $data['pict'] = $request->file('pict')->store('blogs', 'public');
+        }
 
         $data['is_open'] = $request->boolean('is_open');
 
