@@ -5,6 +5,11 @@
     <h1>{{$blog->title}}</h1>
     <div>{!! nl2br(e($blog->body)) !!}}</div>
 
+    画像：<input type="file" name="pict">
+    @if($blog->pict)
+        <p><img src="{{Storage::url($blog->pict) }}"></p>
+    @endif
+
     <p>書き手：{{$blog->user->name}}</p>
 
     <h2>コメント</h2>

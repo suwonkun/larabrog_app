@@ -42,7 +42,7 @@ class BlogController extends Controller
         }
         $data = old() ?: $blog;
 
-        return view('mypage.blog.edit', compact('data'));
+        return view('mypage.blog.edit', compact('blog','data'));
     }
 
     public function update(Blog $blog, BlogSaveRequest $request)
